@@ -29,7 +29,7 @@ def input_linear_mass_tsv(filepath, delimiter=DEFAULT_DELIMITER):
     item = name_from_filepath(filepath)
     dataset[item] = dict()
     # Open file
-    with open(filepath, 'rU') as csv_file:
+    with open(filepath, 'r') as csv_file:
         # Read in file
         reader = csv.reader(csv_file, delimiter=delimiter)
         for i, row in enumerate(reader):
