@@ -60,9 +60,9 @@ class TestSimilarity(unittest.TestCase):
         hypothesis = (5,5,5,5,1)
         reference = HEARST_1997_STARGAZER['stargazer']['2']
         value = boundary_confusion_matrix(hypothesis, reference)
-        self.assertAlmostEquals(float(precision(value)), 0.23076923)
-        self.assertAlmostEquals(float(recall(value)), 0.23076923)
-        self.assertAlmostEquals(float(fmeasure(value)), 0.375)
+        self.assertAlmostEqual(float(precision(value)), 0.23076923)
+        self.assertAlmostEqual(float(recall(value)), 0.23076923)
+        self.assertAlmostEqual(float(fmeasure(value)), 0.375)
 
     def test_bed_confusion_matrix_datasets(self):
         '''
@@ -75,17 +75,17 @@ class TestSimilarity(unittest.TestCase):
         hyp_r = recall(value)
         hyp_f = fmeasure(value)
         # Precision
-        self.assertAlmostEquals(float(hyp_p['stargazer,h1,1']), 0.57142857)
-        self.assertAlmostEquals(float(hyp_p['stargazer,h2,1']), 0.41176470)
-        self.assertAlmostEquals(float(hyp_p['stargazer,h1,2']), 0.42857142)
-        self.assertAlmostEquals(float(hyp_p['stargazer,h2,2']), 0.33333333)
+        self.assertAlmostEqual(float(hyp_p['stargazer,h1,1']), 0.57142857)
+        self.assertAlmostEqual(float(hyp_p['stargazer,h2,1']), 0.41176470)
+        self.assertAlmostEqual(float(hyp_p['stargazer,h1,2']), 0.42857142)
+        self.assertAlmostEqual(float(hyp_p['stargazer,h2,2']), 0.33333333)
         # Recall
-        self.assertAlmostEquals(float(hyp_r['stargazer,h1,1']), 0.57142857)
-        self.assertAlmostEquals(float(hyp_r['stargazer,h2,1']), 0.41176470)
-        self.assertAlmostEquals(float(hyp_r['stargazer,h1,2']), 0.42857142)
-        self.assertAlmostEquals(float(hyp_r['stargazer,h2,2']), 0.33333333)
+        self.assertAlmostEqual(float(hyp_r['stargazer,h1,1']), 0.57142857)
+        self.assertAlmostEqual(float(hyp_r['stargazer,h2,1']), 0.41176470)
+        self.assertAlmostEqual(float(hyp_r['stargazer,h1,2']), 0.42857142)
+        self.assertAlmostEqual(float(hyp_r['stargazer,h2,2']), 0.33333333)
         # FMeasure
-        self.assertAlmostEquals(float(hyp_f['stargazer,h1,1']), 0.72727272)
-        self.assertAlmostEquals(float(hyp_f['stargazer,h2,1']), 0.58333333)
-        self.assertAlmostEquals(float(hyp_f['stargazer,h1,2']), 0.6)
-        self.assertAlmostEquals(float(hyp_f['stargazer,h2,2']), 0.5)
+        self.assertAlmostEqual(float(hyp_f['stargazer,h1,1']), 0.72727272)
+        self.assertAlmostEqual(float(hyp_f['stargazer,h2,1']), 0.58333333)
+        self.assertAlmostEqual(float(hyp_f['stargazer,h1,2']), 0.6)
+        self.assertAlmostEqual(float(hyp_f['stargazer,h2,2']), 0.5)

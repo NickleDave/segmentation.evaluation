@@ -211,7 +211,7 @@ class TestWindowDiffMasses(TestCase):
         hypothesis = [5, 7]
         # Test normal
         actual = window_diff(hypothesis, reference, **self.kwargs)
-        self.assertAlmostEquals(2.0 / 9.0, float(actual))
+        self.assertAlmostEqual(2.0 / 9.0, float(actual))
 
     def test_scaiano_paper_d(self):
         '''
@@ -221,7 +221,7 @@ class TestWindowDiffMasses(TestCase):
         hypothesis = [1, 5, 6]
         # Test normal
         actual = window_diff(hypothesis, reference, **self.kwargs)
-        self.assertAlmostEquals(1.0 / 9.0, float(actual))
+        self.assertAlmostEqual(1.0 / 9.0, float(actual))
 
     def test_scaiano_paper_e(self):
         '''
@@ -231,7 +231,7 @@ class TestWindowDiffMasses(TestCase):
         hypothesis = [5, 1, 1, 5]
         # Test normal
         actual = window_diff(hypothesis, reference, **self.kwargs)
-        self.assertAlmostEquals(5.0 / 9.0, float(actual))
+        self.assertAlmostEqual(5.0 / 9.0, float(actual))
 
     def test_window_size_specified(self):
         '''
@@ -356,14 +356,14 @@ class TestPairwiseWindowDiff(TestCase):
         Calculate permuted pairwise WindowDiff on Group 5 from the dataset
         collected in [KazantsevaSzpakowicz2012]_.
         '''
-        self.assertAlmostEquals(summarize(window_diff(KAZANTSEVA2012_G5,
+        self.assertAlmostEqual(summarize(window_diff(KAZANTSEVA2012_G5,
                                                       lamprier_et_al_2007_fix=False)),
                                (Decimal('0.42514977232721135'),
                                 Decimal('0.14960495739111837'),
                                 Decimal('0.02238164327599834'),
                                 Decimal('0.02159361560546617'),
                                 48))
-        self.assertAlmostEquals(summarize(window_diff(KAZANTSEVA2012_G5,
+        self.assertAlmostEqual(summarize(window_diff(KAZANTSEVA2012_G5,
                                                       lamprier_et_al_2007_fix=True)),
                                (Decimal('0.3981624488837195'),
                                 Decimal('0.1499358110615409'),
@@ -386,14 +386,14 @@ class TestPairwiseWindowDiff(TestCase):
         Calculate mean permuted pairwise WindowDiff on Group 2 from the dataset
         collected in [KazantsevaSzpakowicz2012]_.
         '''
-        self.assertAlmostEquals(summarize(window_diff(KAZANTSEVA2012_G2,
+        self.assertAlmostEqual(summarize(window_diff(KAZANTSEVA2012_G2,
                                                       lamprier_et_al_2007_fix=False)),
                                (Decimal('0.3257163091933661553914718469'),
                                 Decimal('0.1586420969856167116081811670'),
                                 Decimal('0.02516731493599381893573908435'),
                                 Decimal('0.01448197584815743151147537110'),
                                 120))
-        self.assertAlmostEquals(summarize(window_diff(KAZANTSEVA2012_G2,
+        self.assertAlmostEqual(summarize(window_diff(KAZANTSEVA2012_G2,
                                                       lamprier_et_al_2007_fix=True)),
                                (Decimal('0.2745037663246318112728760428'),
                                 Decimal('0.1093940158628282748721971010'),
@@ -408,7 +408,7 @@ class TestPairwiseWindowDiff(TestCase):
         '''
         val = summarize(window_diff(LARGE_DISAGREEMENT,
                                     lamprier_et_al_2007_fix=False))
-        self.assertAlmostEquals(val,
+        self.assertAlmostEqual(val,
                                (Decimal('1'),
                                 Decimal('0'),
                                 Decimal('0'),
@@ -420,14 +420,14 @@ class TestPairwiseWindowDiff(TestCase):
         Calculate mean permuted pairwise WindowDiff on a theoretical dataset
         containing complete agreement.
         '''
-        self.assertAlmostEquals(summarize(window_diff(COMPLETE_AGREEMENT,
+        self.assertAlmostEqual(summarize(window_diff(COMPLETE_AGREEMENT,
                                                       lamprier_et_al_2007_fix=False)),
                                (0.0,
                                 0.0,
                                 0.0,
                                 0.0,
                                 48))
-        self.assertAlmostEquals(summarize(window_diff(COMPLETE_AGREEMENT,
+        self.assertAlmostEqual(summarize(window_diff(COMPLETE_AGREEMENT,
                                                       lamprier_et_al_2007_fix=True)),
                                (0.0,
                                 0.0,
@@ -444,7 +444,7 @@ class TestPairwiseWindowDiff(TestCase):
         value = window_diff(hypothesis, reference)
 
         # Precision
-        self.assertAlmostEquals(float(value['stargazer,h1,1']), 0.31578947)
-        self.assertAlmostEquals(float(value['stargazer,h2,1']), 0.47368421)
-        self.assertAlmostEquals(float(value['stargazer,h1,2']), 0.42105263)
-        self.assertAlmostEquals(float(value['stargazer,h2,2']), 0.47368421)
+        self.assertAlmostEqual(float(value['stargazer,h1,1']), 0.31578947)
+        self.assertAlmostEqual(float(value['stargazer,h2,1']), 0.47368421)
+        self.assertAlmostEqual(float(value['stargazer,h1,2']), 0.42105263)
+        self.assertAlmostEqual(float(value['stargazer,h2,2']), 0.47368421)

@@ -99,10 +99,10 @@ class TestSegmentation(unittest.TestCase):
         reference = HEARST_1997_STARGAZER
         value = segmentation_similarity(hypothesis, reference)
 
-        self.assertAlmostEquals(float(value['stargazer,h1,1']), 0.85)
-        self.assertAlmostEquals(float(value['stargazer,h2,1']), 0.725)
-        self.assertAlmostEquals(float(value['stargazer,h1,2']), 0.8)
-        self.assertAlmostEquals(float(value['stargazer,h2,2']), 0.7)
+        self.assertAlmostEqual(float(value['stargazer,h1,1']), 0.85)
+        self.assertAlmostEqual(float(value['stargazer,h2,1']), 0.725)
+        self.assertAlmostEqual(float(value['stargazer,h1,2']), 0.8)
+        self.assertAlmostEqual(float(value['stargazer,h2,2']), 0.7)
 
     def test_s_datasets_return_parts(self):
         '''
@@ -115,7 +115,7 @@ class TestSegmentation(unittest.TestCase):
             reference,
             return_parts=True)
 
-        self.assertEquals(value['stargazer,h1,1'], (Decimal('17'), 20))
+        self.assertEqual(value['stargazer,h1,1'], (Decimal('17'), 20))
 
     def test_s_datasets_exception(self):
         '''

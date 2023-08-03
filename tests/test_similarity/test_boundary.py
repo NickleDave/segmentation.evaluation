@@ -34,7 +34,7 @@ class TestBoundary(unittest.TestCase):
         Test false negative.
         '''
         value = boundary_similarity([2, 3, 6], [2, 3, 3, 3])
-        self.assertAlmostEquals(Decimal('0.66666'), value, 4)
+        self.assertAlmostEqual(Decimal('0.66666'), value, 4)
 
     def test_near_miss(self):
         '''
@@ -148,7 +148,7 @@ class TestBoundary(unittest.TestCase):
         value = boundary_similarity(hypothesis, reference)
 
         # Precision
-        self.assertAlmostEquals(float(value['stargazer,h1,1']), 0.57142857)
-        self.assertAlmostEquals(float(value['stargazer,h2,1']), 0.38888888)
-        self.assertAlmostEquals(float(value['stargazer,h1,2']), 0.42857142)
-        self.assertAlmostEquals(float(value['stargazer,h2,2']), 0.33333333)
+        self.assertAlmostEqual(float(value['stargazer,h1,1']), 0.57142857)
+        self.assertAlmostEqual(float(value['stargazer,h2,1']), 0.38888888)
+        self.assertAlmostEqual(float(value['stargazer,h1,2']), 0.42857142)
+        self.assertAlmostEqual(float(value['stargazer,h2,2']), 0.33333333)

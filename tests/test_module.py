@@ -23,8 +23,8 @@ class TestModule(unittest.TestCase):
     '''
 
     def test_dir(self):
-        self.assertEquals(50, len(dir(segeval)))
-        self.assertEquals(set(dir(segeval)),
+        self.assertEqual(50, len(dir(segeval)))
+        self.assertEqual(set(dir(segeval)),
                           set([
                               'Average', 'BoundaryFormat', 'COMPLETE_AGREEMENT',
                               'ConfusionMatrix', 'Dataset', 'Field', 'KAZANTSEVA2012_G2',
@@ -44,7 +44,7 @@ class TestModule(unittest.TestCase):
                               'weight_t_scale', 'weight_s', 'weight_a', 'window_diff']))
 
     def test_get_attr(self):
-        self.assertEquals(segeval.__getattr__('__package__'), 'segeval')
+        self.assertEqual(segeval.__getattr__('__package__'), 'segeval')
 
 
 class TestImport(unittest.TestCase):
@@ -54,9 +54,9 @@ class TestImport(unittest.TestCase):
     '''
 
     def test_import_data(self):
-        self.assertEquals(40, len(segeval.__all__))
+        self.assertEqual(40, len(segeval.__all__))
         for item in segeval.__all__:
-            self.assertNotEquals(None, getattr(segeval, item))
+            self.assertNotEqual(None, getattr(segeval, item))
 
 
 class TestExamples(TestCase):
@@ -73,7 +73,7 @@ class TestExamples(TestCase):
         Test actual_agreement_linear.
         '''
 
-        self.assertAlmostEquals(Decimal('0.25645756'),
+        self.assertAlmostEqual(Decimal('0.25645756'),
                                 actual_agreement_linear(KAZANTSEVA2012_G5))
 
     def test_artstein_poesio_bias_linear(self):
@@ -81,7 +81,7 @@ class TestExamples(TestCase):
         Test artstein_poesio_bias_linear.
         '''
 
-        self.assertAlmostEquals(Decimal('0.00277829'),
+        self.assertAlmostEqual(Decimal('0.00277829'),
                                 artstein_poesio_bias_linear(KAZANTSEVA2012_G5))
 
     def test_fleiss_kappa_linear(self):
@@ -89,7 +89,7 @@ class TestExamples(TestCase):
         Test fleiss_kappa_linear.
         '''
 
-        self.assertAlmostEquals(Decimal('0.24210993'),
+        self.assertAlmostEqual(Decimal('0.24210993'),
                                 fleiss_kappa_linear(KAZANTSEVA2012_G5))
 
     def test_fleiss_pi_linear(self):
@@ -97,7 +97,7 @@ class TestExamples(TestCase):
         Test fleiss_pi_linear.
         '''
 
-        self.assertAlmostEquals(Decimal('0.23995756'),
+        self.assertAlmostEqual(Decimal('0.23995756'),
                                 fleiss_pi_linear(KAZANTSEVA2012_G5))
 
     def test_precision(self):
@@ -106,7 +106,7 @@ class TestExamples(TestCase):
         '''
 
         cm = boundary_confusion_matrix(self.masses_an1, self.masses_an2)
-        self.assertAlmostEquals(Decimal('0.14285714'), precision(cm))
+        self.assertAlmostEqual(Decimal('0.14285714'), precision(cm))
 
     def test_recall(self):
         '''
@@ -114,7 +114,7 @@ class TestExamples(TestCase):
         '''
 
         cm = boundary_confusion_matrix(self.masses_an1, self.masses_an2)
-        self.assertAlmostEquals(Decimal('0.14285714'), recall(cm))
+        self.assertAlmostEqual(Decimal('0.14285714'), recall(cm))
 
     def test_fmeasure(self):
         '''
@@ -122,14 +122,14 @@ class TestExamples(TestCase):
         '''
 
         cm = boundary_confusion_matrix(self.masses_an1, self.masses_an2)
-        self.assertAlmostEquals(Decimal('0.25000000'), fmeasure(cm))
+        self.assertAlmostEqual(Decimal('0.25000000'), fmeasure(cm))
 
     def test_boundary_statistics(self):
         '''
         Test boundary_statistics.
         '''
 
-        self.assertEquals(24, len(boundary_statistics(KAZANTSEVA2012_G5)))
+        self.assertEqual(24, len(boundary_statistics(KAZANTSEVA2012_G5)))
 
     def test_boundary_edit_distance(self):
         '''
@@ -137,7 +137,7 @@ class TestExamples(TestCase):
         '''
 
         edits = ([(1, 'b'), (1, 'b'), (1, 'b')], [], [(9, 10, 1)])
-        self.assertEquals(edits, boundary_edit_distance(
+        self.assertEqual(edits, boundary_edit_distance(
             boundary_string_from_masses(self.masses_an1),
             boundary_string_from_masses(self.masses_an2)))
 
@@ -146,8 +146,8 @@ class TestExamples(TestCase):
         Test compute_window_size.
         '''
 
-        self.assertEquals(3, compute_window_size(self.masses_an1))
-        self.assertEquals(3, compute_window_size(KAZANTSEVA2012_G5))
+        self.assertEqual(3, compute_window_size(self.masses_an1))
+        self.assertEqual(3, compute_window_size(KAZANTSEVA2012_G5))
 
     def test_pk(self):
         '''
@@ -156,11 +156,11 @@ class TestExamples(TestCase):
 
         mean, std, var, stderr, count = \
             summarize(pk(KAZANTSEVA2012_G5))
-        self.assertAlmostEquals(Decimal('0.35530058'), mean)
-        self.assertAlmostEquals(Decimal('0.11001760'), std)
-        self.assertAlmostEquals(Decimal('0.01210387'), var)
-        self.assertAlmostEquals(Decimal('0.01587967'), stderr)
-        self.assertEquals(48, count)
+        self.assertAlmostEqual(Decimal('0.35530058'), mean)
+        self.assertAlmostEqual(Decimal('0.11001760'), std)
+        self.assertAlmostEqual(Decimal('0.01210387'), var)
+        self.assertAlmostEqual(Decimal('0.01587967'), stderr)
+        self.assertEqual(48, count)
 
     def test_window_diff(self):
         '''
@@ -169,18 +169,18 @@ class TestExamples(TestCase):
 
         mean, std, var, stderr, count = \
             summarize(window_diff(KAZANTSEVA2012_G5))
-        self.assertAlmostEquals(Decimal('0.42514977'), mean)
-        self.assertAlmostEquals(Decimal('0.14960495'), std)
-        self.assertAlmostEquals(Decimal('0.02238164'), var)
-        self.assertAlmostEquals(Decimal('0.02159361'), stderr)
-        self.assertEquals(48, count)
+        self.assertAlmostEqual(Decimal('0.42514977'), mean)
+        self.assertAlmostEqual(Decimal('0.14960495'), std)
+        self.assertAlmostEqual(Decimal('0.02238164'), var)
+        self.assertAlmostEqual(Decimal('0.02159361'), stderr)
+        self.assertEqual(48, count)
 
     def test_boundary_string_from_masses(self):
         '''
         Test boundary_string_from_masses.
         '''
 
-        self.assertEquals((
+        self.assertEqual((
             frozenset([]), frozenset([]), frozenset([]), frozenset([]),
             frozenset([]), frozenset([]), frozenset([]), frozenset([]),
             frozenset([]), frozenset([]), frozenset([1]), frozenset([])),
@@ -191,7 +191,7 @@ class TestExamples(TestCase):
         Test convert_positions_to_masses.
         '''
 
-        self.assertEquals(
+        self.assertEqual(
             (4, 2), convert_positions_to_masses([1, 1, 1, 1, 2, 2]))
 
     def test_convert_masses_to_positions(self):
@@ -199,5 +199,5 @@ class TestExamples(TestCase):
         Test convert_masses_to_positions.
         '''
 
-        self.assertEquals((1, 1, 1, 1, 2, 2),
+        self.assertEqual((1, 1, 1, 1, 2, 2),
                           convert_masses_to_positions((4, 2)))

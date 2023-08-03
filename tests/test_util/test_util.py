@@ -43,7 +43,7 @@ class TestCase(unittest.TestCase):
                     raise Exception(
                         '{0} not in {1}; expected {2}'.format(item, second,
                                                               first))
-                self.assertAlmostEquals(first[item], second[item], places, msg)
+                self.assertAlmostEqual(first[item], second[item], places, msg)
         elif (isinstance(first, list) or isinstance(first, tuple)) and \
                 (isinstance(second, list) or isinstance(second, tuple)):
             if len(first) != len(second):
@@ -52,7 +52,7 @@ class TestCase(unittest.TestCase):
             for item in zip(first, second):
                 if not msg:
                     msg = '{0} != {1}'.format(first, second)
-                self.assertAlmostEquals(item[0], item[1], places, msg)
+                self.assertAlmostEqual(item[0], item[1], places, msg)
         elif not isinstance(first, type(second)):
             if not isinstance(first, float) and not isinstance(first, Decimal) and \
                     not isinstance(second, float) and not isinstance(second, Decimal):
@@ -76,7 +76,7 @@ class TestTestCase(TestCase):
         '''
         Test a type mistmatch.
         '''
-        self.assertRaises(AssertionError, self.assertAlmostEquals,
+        self.assertRaises(AssertionError, self.assertAlmostEqual,
                           {'a': 1},
                           {'a': 2})
 
@@ -84,44 +84,44 @@ class TestTestCase(TestCase):
         '''
         Test a type mistmatch.
         '''
-        self.assertRaises(Exception, self.assertAlmostEquals, (), {})
+        self.assertRaises(Exception, self.assertAlmostEqual, (), {})
 
     def test_equal_types(self):
         '''
         Test a type mistmatch.
         '''
-        self.assertAlmostEquals({}, {})
-        self.assertAlmostEquals([], [])
-        self.assertAlmostEquals((), ())
-        self.assertAlmostEquals((), [])
-        self.assertAlmostEquals([], ())
-        self.assertAlmostEquals(0.0, 0.0)
-        self.assertAlmostEquals(0, 0)
-        self.assertAlmostEquals(Decimal('0'), Decimal('0'))
-        self.assertAlmostEquals(0.0, 0)
-        self.assertAlmostEquals(0, 0.0)
-        self.assertAlmostEquals(0, Decimal('0'))
-        self.assertAlmostEquals(Decimal('0'), 0)
-        self.assertAlmostEquals(0.0, Decimal('0'))
-        self.assertAlmostEquals(Decimal('0'), 0.0)
+        self.assertAlmostEqual({}, {})
+        self.assertAlmostEqual([], [])
+        self.assertAlmostEqual((), ())
+        self.assertAlmostEqual((), [])
+        self.assertAlmostEqual([], ())
+        self.assertAlmostEqual(0.0, 0.0)
+        self.assertAlmostEqual(0, 0)
+        self.assertAlmostEqual(Decimal('0'), Decimal('0'))
+        self.assertAlmostEqual(0.0, 0)
+        self.assertAlmostEqual(0, 0.0)
+        self.assertAlmostEqual(0, Decimal('0'))
+        self.assertAlmostEqual(Decimal('0'), 0)
+        self.assertAlmostEqual(0.0, Decimal('0'))
+        self.assertAlmostEqual(Decimal('0'), 0.0)
 
     def test_tuple_first(self):
-        self.assertRaises(Exception, self.assertAlmostEquals, (), (1))
+        self.assertRaises(Exception, self.assertAlmostEqual, (), (1))
 
     def test_tuple_second(self):
-        self.assertRaises(Exception, self.assertAlmostEquals, (1), ())
+        self.assertRaises(Exception, self.assertAlmostEqual, (1), ())
 
     def test_list_first(self):
-        self.assertRaises(Exception, self.assertAlmostEquals, [], [1])
+        self.assertRaises(Exception, self.assertAlmostEqual, [], [1])
 
     def test_list_second(self):
-        self.assertRaises(Exception, self.assertAlmostEquals, [1], [])
+        self.assertRaises(Exception, self.assertAlmostEqual, [1], [])
 
     def test_dict_first(self):
-        self.assertRaises(Exception, self.assertAlmostEquals, {}, {'a': 1})
+        self.assertRaises(Exception, self.assertAlmostEqual, {}, {'a': 1})
 
     def test_dict_second(self):
-        self.assertRaises(Exception, self.assertAlmostEquals, {'a': 1}, {})
+        self.assertRaises(Exception, self.assertAlmostEqual, {'a': 1}, {})
 
 
 class UtilTestCase(TestCase):

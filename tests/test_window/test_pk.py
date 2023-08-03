@@ -296,7 +296,7 @@ class TestPairwisePkMeasure(TestCase):
         Calculate permuted pairwise Pk on Group 5 from the dataset
         collected in [KazantsevaSzpakowicz2012]_.
         '''
-        self.assertAlmostEquals(summarize(pk(KAZANTSEVA2012_G5)),
+        self.assertAlmostEqual(summarize(pk(KAZANTSEVA2012_G5)),
                                (Decimal('0.35530058282396693'),
                                 Decimal('0.11001760846099215'),
                                 Decimal('0.012103874171476172'),
@@ -308,7 +308,7 @@ class TestPairwisePkMeasure(TestCase):
         Calculate mean permuted pairwise Pk on Group 2 from the dataset
         collected in [KazantsevaSzpakowicz2012]_.
         '''
-        self.assertAlmostEquals(summarize(pk(KAZANTSEVA2012_G2)),
+        self.assertAlmostEqual(summarize(pk(KAZANTSEVA2012_G2)),
                                (Decimal('0.2882256923776327507173609771'),
                                 Decimal('0.1454395656787966169084191445'),
                                 Decimal('0.02115266726483699483402909754'),
@@ -320,7 +320,7 @@ class TestPairwisePkMeasure(TestCase):
         Calculate mean permuted pairwise Pk on a theoretical dataset
         containing large disagreement.
         '''
-        self.assertAlmostEquals(summarize(pk(LARGE_DISAGREEMENT)),
+        self.assertAlmostEqual(summarize(pk(LARGE_DISAGREEMENT)),
                                (1.0,
                                 0.0,
                                 0.0,
@@ -332,7 +332,7 @@ class TestPairwisePkMeasure(TestCase):
         Calculate mean permuted pairwise Pk on a theoretical dataset
         containing complete agreement.
         '''
-        self.assertAlmostEquals(summarize(pk(COMPLETE_AGREEMENT)),
+        self.assertAlmostEqual(summarize(pk(COMPLETE_AGREEMENT)),
                                (0.0,
                                 0.0,
                                 0.0,
@@ -344,7 +344,7 @@ class TestPairwisePkMeasure(TestCase):
         Calculate mean permuted pairwise Pk on a theoretical dataset
         containing complete agreement.
         '''
-        self.assertAlmostEquals(summarize(pk(dataset=COMPLETE_AGREEMENT)),
+        self.assertAlmostEqual(summarize(pk(dataset=COMPLETE_AGREEMENT)),
                                (0.0,
                                 0.0,
                                 0.0,
@@ -358,7 +358,7 @@ class TestPairwisePkMeasure(TestCase):
         hypothesis = HYPOTHESIS_STARGAZER
         reference = HEARST_1997_STARGAZER
         value = pk(hypothesis, reference)
-        self.assertAlmostEquals(float(value['stargazer,h1,1']), 0.26315789)
-        self.assertAlmostEquals(float(value['stargazer,h2,1']), 0.36842105)
-        self.assertAlmostEquals(float(value['stargazer,h1,2']), 0.42105263)
-        self.assertAlmostEquals(float(value['stargazer,h2,2']), 0.42105263)
+        self.assertAlmostEqual(float(value['stargazer,h1,1']), 0.26315789)
+        self.assertAlmostEqual(float(value['stargazer,h2,1']), 0.36842105)
+        self.assertAlmostEqual(float(value['stargazer,h1,2']), 0.42105263)
+        self.assertAlmostEqual(float(value['stargazer,h2,2']), 0.42105263)
