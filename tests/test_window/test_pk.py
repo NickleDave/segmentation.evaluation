@@ -296,24 +296,32 @@ class TestPairwisePkMeasure(TestCase):
         Calculate permuted pairwise Pk on Group 5 from the dataset
         collected in [KazantsevaSzpakowicz2012]_.
         '''
-        self.assertAlmostEqual(summarize(pk(KAZANTSEVA2012_G5)),
-                               (Decimal('0.35530058282396693'),
-                                Decimal('0.11001760846099215'),
-                                Decimal('0.012103874171476172'),
-                                Decimal('0.015879673965138168'),
-                                48))
+        out = summarize(pk(KAZANTSEVA2012_G5))
+        for val, expected_val in zip(
+            out,
+            (Decimal('0.35530058282396693'),
+             Decimal('0.11001760846099215'),
+             Decimal('0.012103874171476172'),
+             Decimal('0.015879673965138168'),
+             48)
+        ):
+            self.assertAlmostEqual(val, expected_val)
 
     def test_kazantseva2012_g2(self):
         '''
         Calculate mean permuted pairwise Pk on Group 2 from the dataset
         collected in [KazantsevaSzpakowicz2012]_.
         '''
-        self.assertAlmostEqual(summarize(pk(KAZANTSEVA2012_G2)),
-                               (Decimal('0.2882256923776327507173609771'),
-                                Decimal('0.1454395656787966169084191445'),
-                                Decimal('0.02115266726483699483402909754'),
-                                Decimal('0.01327675514600517730547602481'),
-                                120))
+        out = summarize(pk(KAZANTSEVA2012_G2))
+        for val, expected_val in zip(
+            out,
+            (Decimal('0.2882256923776327507173609771'),
+             Decimal('0.1454395656787966169084191445'),
+             Decimal('0.02115266726483699483402909754'),
+             Decimal('0.01327675514600517730547602481'),
+             120)
+        ):
+            self.assertAlmostEqual(val, expected_val)
 
     def test_large_disagreement(self):
         '''
