@@ -356,20 +356,27 @@ class TestPairwiseWindowDiff(TestCase):
         Calculate permuted pairwise WindowDiff on Group 5 from the dataset
         collected in [KazantsevaSzpakowicz2012]_.
         '''
-        self.assertAlmostEqual(summarize(window_diff(KAZANTSEVA2012_G5,
-                                                      lamprier_et_al_2007_fix=False)),
-                               (Decimal('0.42514977232721135'),
-                                Decimal('0.14960495739111837'),
-                                Decimal('0.02238164327599834'),
-                                Decimal('0.02159361560546617'),
-                                48))
-        self.assertAlmostEqual(summarize(window_diff(KAZANTSEVA2012_G5,
-                                                      lamprier_et_al_2007_fix=True)),
-                               (Decimal('0.3981624488837195'),
-                                Decimal('0.1499358110615409'),
-                                Decimal('0.022480747438682093'),
-                                Decimal('0.021641370219386377'),
-                                48))
+        out = summarize(window_diff(KAZANTSEVA2012_G5, lamprier_et_al_2007_fix=False))
+        for val, expected_val in zip(
+            out,
+            (Decimal('0.42514977232721135'),
+             Decimal('0.14960495739111837'),
+             Decimal('0.02238164327599834'),
+             Decimal('0.02159361560546617'),
+             48)
+        ):
+            self.assertAlmostEqual(val, expected_val)
+
+        out = summarize(window_diff(KAZANTSEVA2012_G5, lamprier_et_al_2007_fix=True))
+        for val, expected_val in zip(
+            out,
+            (Decimal('0.3981624488837195'),
+             Decimal('0.1499358110615409'),
+             Decimal('0.022480747438682093'),
+             Decimal('0.021641370219386377'),
+             48)
+        ):
+            self.assertAlmostEqual(val, expected_val)
 
     def test_pair_g5(self):
         '''
@@ -386,20 +393,27 @@ class TestPairwiseWindowDiff(TestCase):
         Calculate mean permuted pairwise WindowDiff on Group 2 from the dataset
         collected in [KazantsevaSzpakowicz2012]_.
         '''
-        self.assertAlmostEqual(summarize(window_diff(KAZANTSEVA2012_G2,
-                                                      lamprier_et_al_2007_fix=False)),
-                               (Decimal('0.3257163091933661553914718469'),
-                                Decimal('0.1586420969856167116081811670'),
-                                Decimal('0.02516731493599381893573908435'),
-                                Decimal('0.01448197584815743151147537110'),
-                                120))
-        self.assertAlmostEqual(summarize(window_diff(KAZANTSEVA2012_G2,
-                                                      lamprier_et_al_2007_fix=True)),
-                               (Decimal('0.2745037663246318112728760428'),
-                                Decimal('0.1093940158628282748721971010'),
-                                Decimal('0.01196705070659672423205913742'),
-                                Decimal('0.009986261690691502298962284136'),
-                                120))
+        out = summarize(window_diff(KAZANTSEVA2012_G2, lamprier_et_al_2007_fix=False))
+        for val, expected_val in zip(
+            out,
+            (Decimal('0.3257163091933661553914718469'),
+             Decimal('0.1586420969856167116081811670'),
+             Decimal('0.02516731493599381893573908435'),
+             Decimal('0.01448197584815743151147537110'),
+             120),
+        ):
+            self.assertAlmostEqual(val, expected_val)
+
+        out = summarize(window_diff(KAZANTSEVA2012_G2, lamprier_et_al_2007_fix=True))
+        for val, expected_val in zip(
+            out,
+            (Decimal('0.2745037663246318112728760428'),
+             Decimal('0.1093940158628282748721971010'),
+             Decimal('0.01196705070659672423205913742'),
+             Decimal('0.009986261690691502298962284136'),
+             120)
+        ):
+            self.assertAlmostEqual(val, expected_val)
 
     def test_large_disagreement(self):
         '''
