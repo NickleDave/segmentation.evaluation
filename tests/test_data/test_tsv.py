@@ -4,8 +4,12 @@ Tests the data merge functions and package.
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
 '''
 from __future__ import absolute_import
-import unittest
+
 import os
+import pathlib
+import unittest
+
+import segeval
 from segeval.data.tsv import (input_linear_mass_tsv, input_linear_positions_tsv)
 from segeval.data.samples import HEARST_1997_STARGAZER
 
@@ -16,7 +20,7 @@ class TestTsv(unittest.TestCase):
     Test data merge functions.
     '''
 
-    test_data_dir = os.path.split(__file__)[0]
+    test_data_dir = pathlib.Path(segeval.data.jsonutils.__file__).parent
 
     def test_input_linear_mass_tsv(self):
         '''
