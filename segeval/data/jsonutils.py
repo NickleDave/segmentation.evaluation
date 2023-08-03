@@ -59,7 +59,7 @@ def input_linear_mass_json(filepath):
     dataset = Dataset()
     data = dict()
     # Open file
-    json_file = open(filepath, 'rU')
+    json_file = open(filepath, 'r')
     # Read in file
     try:
         data = json.load(json_file)
