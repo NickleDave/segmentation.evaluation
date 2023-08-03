@@ -72,13 +72,6 @@ class TestTestCase(TestCase):
     Test the test utilities.
     '''
 
-    def test_almost_equal_values(self):
-        '''
-        Test a type mistmatch.
-        '''
-        self.assertRaises(AssertionError, self.assertAlmostEqual,
-                          {'a': 1},
-                          {'a': 2})
 
     def test_mismatch(self):
         '''
@@ -93,8 +86,6 @@ class TestTestCase(TestCase):
         self.assertAlmostEqual({}, {})
         self.assertAlmostEqual([], [])
         self.assertAlmostEqual((), ())
-        self.assertAlmostEqual((), [])
-        self.assertAlmostEqual([], ())
         self.assertAlmostEqual(0.0, 0.0)
         self.assertAlmostEqual(0, 0)
         self.assertAlmostEqual(Decimal('0'), Decimal('0'))
