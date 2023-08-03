@@ -4,7 +4,6 @@ Utility functions and classes for the package.
 .. moduleauthor:: Chris Fournier <chris.m.fournier@gmail.com>
 '''
 from __future__ import absolute_import
-from segeval.compute import compute_pairwise_values
 
 
 class SegmentationMetricError(Exception):
@@ -29,6 +28,8 @@ class SegmentationMetricError(Exception):
 
 
 def __fnc_metric__(fnc_metric, args, kwargs, kw_defaults):
+    # avoid circular imports
+    from segeval.compute import compute_pairwise_values
 
     from segeval.data import Dataset
     # Create default keyword arguments
