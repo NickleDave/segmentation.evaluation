@@ -40,14 +40,16 @@ def convert_masses_to_positions(masses):
     return tuple(sequence)
 
 
-def boundary_string_from_masses(masses):
-    '''
-    Creates a "boundary string", or sequence of boundary type sets from a list of segment masses, e.g., ``[5,3,5]`` becomes
-    ``[(),(),(),(),(1),(),(),(1),(),(),(),()]``.
-
+def boundary_string_from_masses(masses: list[int]) -> tuple[frozenset]:
+    '''Creates a "boundary string", or sequence of boundary type sets from a list of segment masses
 
     :param masses: Segmentation masses.
     :type masses: tuple
+
+    Examples
+    --------
+    >>> segeval.format.boundary_string_from_masses([5,3,5])
+    (frozenset(), frozenset(), frozenset(), frozenset(), frozenset({1}), frozenset(), frozenset(), frozenset({1}), frozenset(), frozenset(), frozenset(), frozenset())
     '''
     string = [set() for _ in range(0, sum(masses) - 1)]
     # Iterate over each position
