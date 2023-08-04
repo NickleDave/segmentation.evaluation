@@ -7,7 +7,7 @@ from __future__ import absolute_import
 import unittest
 from segeval.similarity.distance.multipleboundary import (
     boundary_edit_distance, __additions_substitutions__,
-    __additions_substitutions_sets__, __has_substitutions__)
+    additions_substitutions_sets, __has_substitutions__)
 
 
 class TestMultipleBoundaries(unittest.TestCase):
@@ -166,5 +166,4 @@ class TestInnerFncOfMultipleBoundaries(unittest.TestCase):
         b = b_i - a_i
         d = a_i ^ b_i
 
-        self.assertEqual(([(2, 'a'), (3, 'a')], set([(4, 6)])),
-                         __additions_substitutions_sets__(d, a, b))
+        self.assertEqual(([(2, 'a'), (3, 'a')], set([(4, 6)])), additions_substitutions_sets(d, a, b))
