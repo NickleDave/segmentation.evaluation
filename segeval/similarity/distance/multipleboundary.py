@@ -32,9 +32,8 @@ def __additions_substitutions__(d, a, b):
     return additions, substitutions
 
 
-def __additions_substitutions_sets__(d, a, b):
-    '''
-    Compute the sets of additions and substitutions for a given pair of
+def additions_substitutions_sets(d: set, a: set, b: set) -> tuple[list, set]:
+    '''Compute the sets of additions and substitutions for a given pair of
     boundary string positions using:
 
     :param d: Symmetric difference between the pair.
@@ -108,9 +107,8 @@ def __overlaps_existing__(i, j, d, options_transp):
     return check_position(i) or check_position(j)
 
 
-def __transpositions__(boundary_string_a, boundary_string_b, n, options_set):
-    '''
-    Identify all non-overlapping minimal transpositions between two boundary
+def find_transpositions(boundary_string_a, boundary_string_b, n, options_set):
+    '''Identify all non-overlapping minimal transpositions between two boundary
     strings while removing the additions/deletions and substitutions that they
     would overlap from the set of potential additions/deletions and
     substitutions.
@@ -161,9 +159,8 @@ def __transpositions__(boundary_string_a, boundary_string_b, n, options_set):
     return transpositions
 
 
-def __optional_set_edits__(boundary_string_a, boundary_string_b):
-    '''
-    Identify all potential additions/deletions and substitutions.
+def optional_set_edits(boundary_string_a, boundary_string_b):
+    '''Identify all potential additions/deletions and substitutions.
     '''
 
     options_set = dict()
@@ -178,48 +175,41 @@ def __optional_set_edits__(boundary_string_a, boundary_string_b):
     return options_set
 
 
-def __boundary_edit_distance__(boundary_string_a, boundary_string_b, n_t):
-    '''
-    Identify the minimum set of additions, substitutions, and transpositions
-    that could be applied between two boundary strings for a given set
-    of transpositions spanning lengths 'n_t'.
-
-    :param n_t: transposition spanning sizes allowed
-    :type n_t:  list or set
-    '''
-
-    # Find potential addition/deletion/substitution operations
-    options_set = __optional_set_edits__(boundary_string_a,
-                                         boundary_string_b)
-    # Find transpositions
-    transpositions = __transpositions__(boundary_string_a,
-                                        boundary_string_b, n_t, options_set)
-    # Construct additions and substitutions
-    additions = list()
-    substitutions = list()
-    for option in options_set.values():
-        current_additions, current_substitutions = \
-            __additions_substitutions_sets__(option.sim, option.a_b, option.b_a)
-        additions.extend(current_additions)
-        substitutions.extend(current_substitutions)
-    # Return
-    return additions, substitutions, transpositions
-
 
 def boundary_edit_distance(boundary_string_a, boundary_string_b, n_t=2):
-    '''
-    Computes boundary edit distance between two boundary strings.  Returns a \
-    list of Addition, Substitution, and Transposition edit sets.
+    '''Computes boundary edit distance between two boundary strings.
 
-    :param boundary_string_a: Boundary string to compare; produced by :func:`boundary_string_from_masses`
-    :param boundary_string_b: See `boundary_string_a`
-    :param n_t: Maximum distance (in potential boundary positions) that a \
-        transposition may span
+    Identifies the minimum set of additions, substitutions, and transpositions
+    that could be applied between two boundary strings for a given set
+    of transpositions spanning lengths ``n_t``.
+
+    Returns a list of Addition, Substitution, and Transposition edit sets.
+
+    :param boundary_string_a:
+        Boundary string to compare; produced by :func:`boundary_string_from_masses`
+    :param boundary_string_b:
+        Boundary string to compare; produced by :func:`boundary_string_from_masses`
+    :param n_t:
+        Maximum distance (in potential boundary positions) that a
+        transposition may span.
 
     :type boundary_string_a:  tuple
     :type boundary_string_b:  tuple
     :type n_t:  int
     '''
-
     n_t = range(2, n_t + 1)
-    return __boundary_edit_distance__(boundary_string_a, boundary_string_b, n_t)
+    # Find potential addition/deletion/substitution operations
+    options_set = optional_set_edits(boundary_string_a, boundary_string_b)
+
+    # Find transpositions
+    transpositions = find_transpositions(boundary_string_a, boundary_string_b, n_t, options_set)
+
+    # Construct additions and substitutions
+    additions = list()
+    substitutions = list()
+    for option in options_set.values():
+        current_additions, current_substitutions = additions_substitutions_sets(option.sim, option.a_b, option.b_a)
+        additions.extend(current_additions)
+        substitutions.extend(current_substitutions)
+    # Return
+    return additions, substitutions, transpositions
