@@ -6,7 +6,7 @@ Tests multiple-boundary edit distance.
 from __future__ import absolute_import
 import unittest
 from segeval.similarity.distance.multipleboundary import (
-    boundary_edit_distance, __additions_substitutions__,
+    boundary_edit_distance, additions_substitutions,
     additions_substitutions_sets, __has_substitutions__)
 
 
@@ -143,7 +143,7 @@ class TestInnerFncOfMultipleBoundaries(unittest.TestCase):
 
     def test_additions_substitutions(self):
         '''
-        Test the expected functionality of __additions_substitutions__
+        Test the expected functionality of additions_substitutions
         '''
         a_i = set([1, 2, 3, 4])
         b_i = set([1, 6])
@@ -153,11 +153,11 @@ class TestInnerFncOfMultipleBoundaries(unittest.TestCase):
         d = a_i ^ b_i
 
         self.assertEqual((2, 1),
-                         __additions_substitutions__(d, a, b))
+                         additions_substitutions(d, a, b))
 
     def test_additions_substitutions_sets(self):
         '''
-        Test the expected functionality of __additions_substitutions_sets__
+        Test the expected functionality of ``additions_substitutions_sets``
         '''
         a_i = set([1, 2, 3, 4])
         b_i = set([1, 6])
